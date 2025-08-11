@@ -1,0 +1,32 @@
+:root{
+  --brown-900:#4b2f28; /* headline */
+  --cream:#f3ede7; /* background */
+  --muted-green:#3f7a5f; /* accent */
+  --card:#dbe9e0; /* light green card */
+  --text:#4b2f28;
+  --radius:14px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--text)}
+.container{max-width:760px;margin:18px auto;padding:18px}
+.hero{background:transparent;text-align:center;padding:12px}
+.hero .logo{font-size:44px;font-weight:800;color:var(--brown-900)}
+.hero.small .logo{font-size:24px}
+.tag{color:var(--muted-green);font-weight:700;margin-top:6px}
+.intro{background:rgba(255,255,255,0.6);padding:16px;border-radius:12px;margin-bottom:18px}
+.buttons{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+.btn{background:var(--brown-900);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;display:inline-block}
+.btn.outline{background:transparent;border:2px solid var(--brown-900);color:var(--brown-900)}
+.inventory{margin-top:18px;padding:12px;background:var(--card);border-radius:12px}
+.inventory h2{margin-top:0;color:var(--brown-900)}
+.inventory-list{display:grid;grid-template-columns:1fr;gap:8px}
+.item{background:#fff;padding:10px;border-radius:10px;display:flex;justify-content:space-between;align-items:center}
+.formcard{background:#fff;padding:14px;border-radius:12px}
+label{display:block;margin-bottom:8px}
+input,select{width:100%;padding:8px;margin-top:6px;border-radius:8px;border:1px solid #ddd}
+.row{display:flex;gap:10px;margin-top:10px}
+.msg{margin-top:10px;color:var(--muted-green)}
+.note{font-size:12px;color:#666}
+@media (max-width:480px){.container{padding:12px}.hero .logo{font-size:32px}}

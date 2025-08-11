@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Reuse Hub</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <div class="logo">THE REUSE HUB</div>
+      <p class="tag">Borrow. Return. Repeat.</p>
+    </header>
+
+    <section class="intro">
+      <p>Welcome — your eco-friendly corner for sharing and reusing at university. Use the buttons below to borrow or return items. You can also view available items.</p>
+      <div class="buttons">
+        <a class="btn" href="/borrow.html">Borrow Item</a>
+        <a class="btn outline" href="/return.html">Return Item</a>
+        <a class="btn" href="#inventory" id="viewInventoryBtn">View Inventory</a>
+      </div>
+    </section>
+
+    <section id="inventory" class="inventory">
+      <h2>Inventory</h2>
+      <div id="inventoryList">Loading...</div>
+    </section>
+
+    <footer>
+      <small>Access this link via QR code around campus.</small>
+    </footer>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Return — The Reuse Hub</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="hero small">Return Item</header>
+    <section class="formcard">
+      <form id="returnForm">
+        <label>Item
+          <select id="itemSelect"></select>
+        </label>
+        <label>Quantity
+          <input type="number" id="qty" min="1" value="1" />
+        </label>
+        <label>Your name
+          <input type="text" id="user_name" required />
+        </label>
+        <label>Student ID
+          <input type="text" id="student_id" />
+        </label>
+        <label>Contact
+          <input type="text" id="contact" />
+        </label>
+        <div class="row">
+          <button class="btn" type="submit">Return</button>
+          <a class="btn outline" href="/">Home</a>
+        </div>
+      </form>
+      <div id="msg" class="msg"></div>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', async () => {
+      const sel = document.getElementById('itemSelect');
+      const res = await fetch('/api/inventory');
+      const data = await res.json();
+      sel.innerHTML = data.map(i => `<option value="${i.id}">${i.name}</option>`).join('');
+
+      document.getElementById('returnForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const body = {
+          item_id: parseInt(sel.value),
+          qty: parseInt(document.getElementById('qty').value),
+          user_name: document.getElementById('user_name').value,
+          student_id: document.getElementById('student_id').value,
+          contact: document.getElementById('contact').value
+        };
+        const r = await fetch('/api/return', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(body) });
+        const j = await r.json();
+        const msg = document.getElementById('msg');
+        if (j.success) msg.textContent = 'Return recorded — thank you!'; else msg.textContent = j.error || 'Error';
+      });
+    });
+  </script>
+</body>
+</html>

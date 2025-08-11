@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin — The Reuse Hub</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="hero small">Admin Panel</header>
+    <section class="formcard">
+      <div>
+        <button id="loadInv" class="btn">Load Inventory</button>
+        <button id="loadTx" class="btn outline">Load Transactions</button>
+      </div>
+      <div id="adminContent"></div>
+      <p class="note">Note: Admin endpoints are protected with basic-auth. Use ADMIN_USER and ADMIN_PASS from .env.</p>
+      <a class="btn outline" href="/">Home</a>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+  <script>
+    document.getElementById('loadInv').addEventListener('click', async () => {
+      const u = prompt('Admin username:');
+      const p = prompt('Admin password:');
+      const headers = { 'Authorization': 'Basic ' + btoa(u + ':' + p) };
+      const r = await fetch('/admin-api/inventory', { headers });
+      const data = await r.json();
+      document.getElementById('adminContent').innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+    });
+    document.getElementById('loadTx').addEventListener('click', async () => {
+      const u = prompt('Admin username:');
+      const p = prompt('Admin password:');
+      const headers = { 'Authorization': 'Basic ' + btoa(u + ':' + p) };
+      const r = await fetch('/admin-api/transactions', { headers });
+      const data = await r.json();
+      document.getElementById('adminContent').innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+    });
+  </script>
+</body>
+</html>
